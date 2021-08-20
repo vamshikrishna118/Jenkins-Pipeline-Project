@@ -31,8 +31,11 @@ pipeline {
         stage('Tomcat_Deploy') {
             steps {
                 echo 'Deploying application from Nexus to tocmat....'
-            	sh 'wget --user=admin --password=admin123 http://3.90.105.90:8081/nexus/service/local/repositories/releases/content/com/web/cal/WebAppCal/1.2.4/WebAppCal-1.2.4.war'
-            	sh 'sudo cp WebAppCal-1.2.4.war /home/centos/apache-tomcat-7.0.94/webapps/'
+            	script {	
+			def mavenPom = readMavenPom file: 'pom.xml'
+			sh 'wget --user=admin --password=admin123 "http://3.90.105.90:8081/nexus/service/local/repositories/releases/content/com/web/cal/WebAppCal/${mavenPom.version}/WebAppCal-${mavenPom.version}.war"'
+            		sh 'sudo cp WebAppCal-${mavenPom.version}.war /home/centos/apache-tomcat-7.0.94/webapps/'
+		}
             }
         }
     }
