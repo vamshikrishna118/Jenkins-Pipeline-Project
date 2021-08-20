@@ -5,7 +5,7 @@ pipeline {
         stage('MVNV_Validate') {
             steps {
                 echo 'Validating..'
-		sh 'mvn validate'
+		sh 'mvn compile'
             }
         }
         stage('MVN_Test') {
@@ -25,11 +25,13 @@ pipeline {
         stage('Nexus_Deploy') {
             steps {
                 echo 'Deploying artifact to Nexus....'
+            	sh 'mvn deploy'
             }
         }
         stage('Tomcat_Deploy') {
             steps {
                 echo 'Deploying application from Nexus to tocmat....'
+                echo 'Add nexus repositary location and copy'
             }
         }
     }
