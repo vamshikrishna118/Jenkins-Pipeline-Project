@@ -13,6 +13,7 @@ pipeline {
                 echo 'Testing..'
 		sh 'mvn clean'
 		sh 'mvn test'
+		sh 'mvn package'
             }
         }
         stage('Sonar_Analysis') {
