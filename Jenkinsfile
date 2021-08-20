@@ -32,7 +32,7 @@ pipeline {
             steps {
                 echo 'Deploying application from Nexus to tocmat....'
             	sh 'wget --user=admin --password=admin123 http://3.90.105.90:8081/nexus/service/local/repositories/releases/content/com/web/cal/WebAppCal/1.2.4/WebAppCal-1.2.4.war'
-            	sh 'cp WebAppCal-1.2.4.war /home/centos/apache-tomcat-7.0.94/webapps/'
+            	sh 'sudo cp WebAppCal-1.2.4.war /home/centos/apache-tomcat-7.0.94/webapps/'
             }
         }
     }
