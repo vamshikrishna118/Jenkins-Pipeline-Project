@@ -33,7 +33,7 @@ pipeline {
                 echo 'Deploying application from Nexus to tocmat....'
             	script {	
 			def mavenPom = readMavenPom file: 'pom.xml'
-			sh 'wget --user=admin --password=admin123 "http://3.90.105.90:8081/nexus/service/local/repositories/releases/content/com/web/cal/WebAppCal/${mavenPom.version}/WebAppCal-${mavenPom.version}.war"'
+			sh 'wget --user=admin --password=admin123 `http://3.90.105.90:8081/nexus/service/local/repositories/releases/content/com/web/cal/WebAppCal/${mavenPom.version}/WebAppCal-${mavenPom.version}.war`'
             		sh 'sudo cp WebAppCal-${mavenPom.version}.war /home/centos/apache-tomcat-7.0.94/webapps/'
 		}
             }
